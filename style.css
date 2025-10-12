@@ -1,15 +1,85 @@
+:root {
+    --a: #202020;
+    --b: #aeaeae;
+    --c: #ececec;
+    --d: #303030;
+    --e: #e0f2fe;
+}
+
+body {
+    background-color: var(--c);
+}
+
+@font-face {
+    font-family: "Aptos";
+    src: url("/media/Aptos.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 #game-container {
     display: none;
     margin-top: 12px;
     margin-left: 12px;
+    text-align: center;
 }
 
 #login-container {
     margin-top: 12px;
     margin-left: 12px;
+    text-align: center;
+}
+
+.input {
+    color: var(--a);
+    font-family: Aptos;
+    font-size: 12px;
+    border-radius: 4px;
+    border: solid var(--d) 2px;
+    background-color: var(--e);
+    transition-duration: 0.4s;
+}
+
+.input:focus {
+    outline: none;
+    border: solid var(--c) 2px;
+    background-color: var(--c);
+    transform: scale(1.05);
+}
+
+.log {
+    color: var(--a);
+    line-height: 24px;
+}
+
+.button {
+    background-color: var(--c);
+    color: var(--a);
+    font-family: Aptos;
+    font-size: 12px;
+    border-radius: 4px;
+    border: solid var(--d) 2px;
+    transition-duration: 0.8s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--d);
+    color: var(--c);
+    border: solid var(--c) 2px;
+    transform: scale(1.05);
+}
+
+#pre-game-log {
+    text-align: left;
+}
+
+#game-log {
+    text-align: left;
 }
 
 .title {
-    font-family: didot;
-    font-size: 32px;
+    color: var(--d);
+    font-family: Aptos;
+    font-size: 20px;
 }

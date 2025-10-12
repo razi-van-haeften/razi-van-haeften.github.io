@@ -7,28 +7,28 @@
 <body>
     <div id="login-container">
         <p class="title">Enter your name to join:</p>
-        <input id="nameInput" placeholder="Your name">
-        <button onclick="joinGame()">Join</button>
-        <pre id="pre-game-log"></pre>
+        <input class="input" id="name-input" placeholder="unamed">
+        <button class="button" id="name-button" onclick="joinGame()">join</button>
+        <pre class="log" id="pre-game-log"></pre>
     </div>
 
     <div id="game-container">
         <p class="title">Welcome, <span id="playerName"></span>!</p>
-        <input id="msg" placeholder="Type a message">
-        <button onclick="send()">Send</button>
-        <pre id="game-log"></pre>
+        <input class="input" id="msg-input" placeholder="message">
+        <button class="button" onclick="send()">Send</button>
+        <pre class="log" id="game-log"></pre>
     </div>
 
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
         var socket = io("https://backend-ziq1.onrender.com");
-        socket.on("connect", () => log("✅ Connected, Socket Id: " + socket.id, "pre-game"));
-        socket.on("joined", msg => log("📩 " + msg, "pre-game"));
+        socket.on("connect", () => log("✅  connected\nID  " + socket.id, "pre-game"));
+        socket.on("joined", msg => log("📩  " + msg, "pre-game"));
         var playerName;
 
         function joinGame() {
-            const input = document.getElementById("nameInput").value.trim();
-            if (!input) return alert("Please enter a name");
+            var input = document.getElementById("name-input").value.trim();
+            if (!input) input = document.getElementById("name-input").placeholder;
 
             playerName = input;
             socket.emit("join", playerName);
@@ -43,9 +43,9 @@
         }
 
         function send() {
-            const m = document.getElementById("msg").value;
+            const m = document.getElementById("msg-input").value;
             socket.emit("chat", m);
-            document.getElementById("msg").value = "";
+            document.getElementById("msg-input").value = "";
         }
 
         function log(t, id) {
