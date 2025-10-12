@@ -1,0 +1,8 @@
+* {
+    margin: 0px;
+}
+
+#game-container {
+    display: none;
+    font-family: 'Courier New', Courier, monospace;
+}
