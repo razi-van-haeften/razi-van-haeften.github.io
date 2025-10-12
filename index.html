@@ -43,8 +43,11 @@
         }
 
         function send() {
-            const m = document.getElementById("msg-input").value;
-            socket.emit("chat", m);
+            const msg = document.getElementById("msg-input").value.trim();
+
+            if (!msg) return;
+
+            socket.emit("chat", msg);
             document.getElementById("msg-input").value = "";
         }
 
