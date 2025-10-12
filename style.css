@@ -67,7 +67,7 @@ body {
     background-color: var(--d);
     color: var(--c);
     border: solid var(--c) 2px;
-    transform: scale(1.05);
+    transform: scale(1.25);
 }
 
 #pre-game-log {
