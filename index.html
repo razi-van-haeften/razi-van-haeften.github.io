@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <video controls>
-    <source src="video.mov" type="video/quicktime">
-    Your browser does not support MOV playback.
-</video>
-</body>
+<html>
+  <body>
+    <h1>Game</h1>
+    <input id="msg" placeholder="Type message">
+    <button onclick="send()">Send</button>
+    <pre id="log"></pre>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script>
+      const socket = io("https://backend-ziq1.onrender.com");
+
+      socket.on("connect", () => log("✅ Connected to server"));
+      socket.on("message", msg => log("📩 " + msg));
+      socket.on("chat", msg => log("💬 " + msg));
+
+      function send() {
+        const m = document.getElementById("msg").value;
+        socket.emit("chat", m);
+        document.getElementById("msg").value = "";
+      }
+
+      function log(t) {
+        document.getElementById("log").textContent += t + "\n";
+      }
+    </script>
+  </body>
 </html>
