@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h1>Game</h1>
-    <input id="msg" placeholder="Type message">
-    <button onclick="send()">Send</button>
-    <pre id="log"></pre>
+    <div id="login">
+      <h2>Enter your name to join:</h2>
+      <input id="nameInput" placeholder="Your name">
+      <button onclick="joinGame()">Join</button>
+    </div>
+
+    <div id="game" style="display:none;">
+      <h2>Welcome, <span id="playerName"></span>!</h2>
+      <input id="msg" placeholder="Type a message">
+      <button onclick="send()">Send</button>
+      <pre id="log"></pre>
+    </div>
 
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
-      const socket = io("https://backend-ziq1.onrender.com");
+      let socket;
+      let playerName;
 
-      socket.on("connect", () => log("✅ Connected to server"));
-      socket.on("message", msg => log("📩 " + msg));
-      socket.on("chat", msg => log("💬 " + msg));
+      function joinGame() {
+        const input = document.getElementById("nameInput").value.trim();
+        if (!input) return alert("Please enter a name");
+
+        playerName = input;
+
+        // Hide login, show game UI
+        document.getElementById("login").style.display = "none";
+        document.getElementById("game").style.display = "block";
+        document.getElementById("playerName").textContent = playerName;
+
+        // Connect to Socket.IO
+        socket = io("https://backend-ziq1.onrender.com");
+
+        socket.on("connect", () => log("✅ Connected: " + socket.id));
+        socket.on("message", msg => log("📩 " + msg));
+        socket.on("chat", msg => log("💬 " + msg));
+
+        // Tell server your name
+        socket.emit("join", playerName);
+      }
 
       function send() {
         const m = document.getElementById("msg").value;
