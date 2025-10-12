@@ -4,5 +4,16 @@
 
 #game-container {
     display: none;
-    font-family: 'Courier New', Courier, monospace;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+#login-container {
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+.title {
+    font-family: didot;
+    font-size: 32px;
 }

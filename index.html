@@ -5,15 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="login">
-        <h2>Enter your name to join:</h2>
+    <div id="login-container">
+        <p class="title">Enter your name to join:</p>
         <input id="nameInput" placeholder="Your name">
         <button onclick="joinGame()">Join</button>
         <pre id="pre-game-log"></pre>
     </div>
 
     <div id="game-container">
-        <h2>Welcome, <span id="playerName"></span>!</h2>
+        <p class="title">Welcome, <span id="playerName"></span>!</p>
         <input id="msg" placeholder="Type a message">
         <button onclick="send()">Send</button>
         <pre id="game-log"></pre>
@@ -32,9 +32,8 @@
 
             playerName = input;
             socket.emit("join", playerName);
-
-            // Hide login, show game UI
-            document.getElementById("login").style.display = "none";
+            
+            document.getElementById("login-container").style.display = "none";
             document.getElementById("game-container").style.display = "block";
             document.getElementById("playerName").textContent = playerName;
 
