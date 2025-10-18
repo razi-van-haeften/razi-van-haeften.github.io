@@ -1,12 +1,14 @@
 :root {
     --a: #202020;
-    --b: #aeaeae;
+    --b: #660808;
     --c: #ececec;
     --d: #303030;
     --e: #e0f2fe;
+    --f: #ee191984;
 }
 
 body {
+    margin: 0px;
     background-color: var(--c);
 }
 
@@ -18,15 +20,17 @@ body {
 }
 
 #game-container {
+    
     display: none;
-    margin-top: 12px;
-    margin-left: 12px;
-    text-align: center;
+    position: relative;
 }
 
-#login-container {
-    margin-top: 12px;
-    margin-left: 12px;
+#menu-container {
+    left: 50vw;
+    top: 50vh;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
     text-align: center;
 }
 
@@ -37,18 +41,18 @@ body {
     border-radius: 4px;
     border: solid var(--d) 2px;
     background-color: var(--e);
-    transition-duration: 0.4s;
+    transition-duration: 0.1s;
 }
 
 .input:focus {
     outline: none;
-    border: solid var(--c) 2px;
-    background-color: var(--c);
-    transform: scale(1.05);
+    border: solid transparent 2px;
+    background-color: transparent;
+    transform: scale(1.1);
 }
 
 .log {
-    color: var(--a);
+    color: var(--c);
     line-height: 24px;
 }
 
@@ -59,27 +63,57 @@ body {
     font-size: 12px;
     border-radius: 4px;
     border: solid var(--d) 2px;
-    transition-duration: 0.8s;
+    transition-duration: 0.1s;
+    opacity: 1;
     cursor: pointer;
 }
 
-.button:hover {
+.button.blocked {
+    background-color: var(--f);
+    color: var(--b);
+    font-family: Aptos;
+    font-size: 12px;
+    border-radius: 4px;
+    border: solid var(--b) 2px;
+    transition-duration: 1.0s;
+    opacity: 1.0;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.button:hover:not(.blocked) {
     background-color: var(--d);
     color: var(--c);
     border: solid var(--c) 2px;
-    transform: scale(1.25);
-}
-
-#pre-game-log {
-    text-align: left;
-}
-
-#game-log {
-    text-align: left;
+    transform: scale(1.2);
 }
 
 .title {
     color: var(--d);
     font-family: Aptos;
     font-size: 20px;
+}
+
+#game-canvas{
+    position: absolute;
+    background-color: var(--c);
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    image-rendering: pixelated;
+}
+
+#game-chat {
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    margin-top: 24px;
+    margin-left: 36px;
+    left: 0px;
+    opacity: 1.0;
+}
+
+#game-log {
+    color: var(--a);
+    margin-left: 16px;
 }
