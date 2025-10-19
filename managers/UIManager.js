@@ -6,6 +6,7 @@ export class UIManager {
         this.registerEvents();
 
         this.chatRecord = [];
+        this.MAX_CHAT = 8;
     }
     registerEvents() {
         this.onConnect();
@@ -78,8 +79,13 @@ export class UIManager {
     }
     onRecieveChat() {
         this.socketManager.addEventListener("recievedChat", (data) => {
+            this.game.log.textContent = "";
             const message = data.detail.message.split("\x1F");
-            this.game.log.textContent += message[0] + ":    " + message[1] + "\n";
+            this.chatRecord.push(message);
+            if(this.chatRecord.length > this.MAX_CHAT) this.chatRecord.shift();
+            for(var i = 0; i < this.chatRecord.length; i ++){
+                this.game.log.textContent += this.chatRecord[i][0] + ":  " + this.chatRecord[i][1] + "\n";
+            }
         });
     }
     typeChat() {
@@ -91,7 +97,6 @@ export class UIManager {
                 }
                 event.preventDefault();
                 this.game.input.focus();
-
             }
         });
     }
