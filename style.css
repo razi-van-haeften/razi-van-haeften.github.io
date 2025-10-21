@@ -5,6 +5,7 @@
     --d: #303030;
     --e: #e0f2fe;
     --f: #ee191984;
+    --g: #5fb0e341;
 }
 
 body {
@@ -20,7 +21,6 @@ body {
 }
 
 #game-container {
-    
     display: none;
     position: relative;
 }
@@ -40,7 +40,7 @@ body {
     font-size: 12px;
     border-radius: 4px;
     border: solid var(--d) 2px;
-    background-color: var(--e);
+    background-color: var(--g);
     transition-duration: 0.1s;
 }
 
@@ -108,12 +108,37 @@ body {
     z-index: 2;
     top: 0px;
     margin-top: 24px;
-    margin-left: 36px;
+    margin-left: 52px;
     left: 0px;
     opacity: 1.0;
 }
 
 #game-log {
+    width: 20vw;
+    text-wrap: stable;
+    overflow-wrap: break-word;
+    padding: 8px;
+    line-height: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: none;
     color: var(--a);
-    margin-left: 16px;
+    background-color: var(--g);
+    font-family: Aptos;
+}
+
+name {
+    font-size: 10px;
+    font-family: monospace;
+    color: var(--d);
+    opacity: 0.6;
+    padding: 2px;
+    border-radius: 3px;
+    transition-duration: 0.1s;
+}
+
+name:hover {
+    color: var(--d);
+    opacity: 1.0;
+    background-color: var(--f);
 }

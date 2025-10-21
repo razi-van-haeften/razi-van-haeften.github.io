@@ -1,15 +1,24 @@
 import { SocketManager } from "./managers/SocketManager.js";
 import { UIManager } from "./managers/UIManager.js";
+import { Vec2 } from "./models/Vec2.js";
 
-const socket = new SocketManager("https://backend-ziq1.onrender.com");
-const ui = new UIManager(socket);
-window.socket = socket;
-window.ui = ui;
+function main() {
+    const socket = new SocketManager("https://backend-ziq1.onrender.com");
+    const ui = new UIManager(socket);
+    window.socket = socket;
+    window.ui = ui;
 
-const canvas = document.getElementById("game-canvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("game-canvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-ctx.fillStyle = "salmon";
-ctx.fillRect(0, 0, 10, 10);
+    const ctx = canvas.getContext('c2d');
+    window.ctx = ctx;
+}
+
+main();
+
+
+
+
+

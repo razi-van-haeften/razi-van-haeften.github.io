@@ -1,4 +1,5 @@
 import { concatBuffers } from "./concatBuffers.js";
+import { PlayerManager } from "./PlayerManager.js";
 
 export class SocketManager extends EventTarget {
     constructor(url) {
@@ -7,6 +8,7 @@ export class SocketManager extends EventTarget {
         this.registerEvents();
         this.decoder = new TextDecoder("utf-8");
         this.encoder = new TextEncoder();
+        this.players = new PlayerManager();
     }
     registerEvents() {
         this.onConnect();
@@ -52,7 +54,7 @@ export class SocketManager extends EventTarget {
         }));
     }
     /*
-    SEND 
+    SEND
     */
     sendPacket(type = Number(), payload) {
         const type_b = new ArrayBuffer(1);

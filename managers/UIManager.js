@@ -41,13 +41,13 @@ export class UIManager {
             this.socketManager.sendChat(message);
             this.game.input.value = "";
         });
-        this.game.input.addEventListener("keydown", (event)=>{
-            if(event.key == "Enter"){
+        this.game.input.addEventListener("keydown", (event) => {
+            if (event.key == "Enter") {
                 const message = this.game.input.value.trim();
-                if (!message){
+                if (!message) {
                     this.game.input.blur();
                     return;
-                } 
+                }
                 this.socketManager.sendChat(message);
                 this.game.input.value = "";
                 this.game.input.blur();
@@ -63,6 +63,17 @@ export class UIManager {
                 this.socketManager.joinGame(name);
             }
             this.switchToGame();
+        });
+        window.addEventListener("keydown", (event) => {
+            if (event.key == "Enter") {
+                const name = this.menu.input.value.trim();
+                if (!name) {
+                    this.socketManager.joinGame("unamed");
+                } else {
+                    this.socketManager.joinGame(name);
+                }
+                this.switchToGame();
+            }
         });
     }
     onConnect() {
@@ -82,9 +93,9 @@ export class UIManager {
             this.game.log.textContent = "";
             const message = data.detail.message.split("\x1F");
             this.chatRecord.push(message);
-            if(this.chatRecord.length > this.MAX_CHAT) this.chatRecord.shift();
-            for(var i = 0; i < this.chatRecord.length; i ++){
-                this.game.log.textContent += this.chatRecord[i][0] + ":  " + this.chatRecord[i][1] + "\n";
+            if (this.chatRecord.length > this.MAX_CHAT) this.chatRecord.shift();
+            for (var i = 0; i < this.chatRecord.length; i++) {
+                this.game.log.innerHTML += `<name>${this.chatRecord[i][0]}:</name>   ${this.chatRecord[i][1]}\n`;
             }
         });
     }
